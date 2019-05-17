@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light ">
+  <div class="container">
+      <a class="navbar-brand" routerLink="/">
+        D<i class="fa fa-envira" aria-hidden="true"></i>V
+      </a>
+      <button (click)= "isNavbarCollapsed = !isNavbarCollapsed" class="navbar-toggler" type="button"  data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarSupportedContent" >
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" routerLink="/shopping-cart">
+                <span *ngIf="cart$ | async as cart" class="badge badge-danger badge-pill">
+                  {{ cart.totalItemsCount }}</span>
+                  <i class="fa fa-shopping-cart fa-lg"></i>
+              </a>
+            </li>
+      
+            <ng-template #anonymousUser>
+              <li class="nav-item active">
+                <a class="nav-link" routerLink="/login">Login </a>
+              </li>
+            </ng-template>
+      
+            <li *ngIf="appUser as user; else anonymousUser" class="nav-item dropdown" ngbDropdown>
+              <a class="nav-link dropdown-toggle" ngbDropdownToggle  id="navbarDropdown" role="button">
+                {{ user.name }}
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown" ngbDropdownMenu>
+                <a class="dropdown-item" routerLink="/my/orders">My Orders</a>
+                
+                <a *ngIf="user.isAdmin" class="dropdown-item" routerLink="/admin/orders">Manage Orders</a>
+                <a *ngIf="user.isAdmin" class="dropdown-item" routerLink="/admin/products">Manage Products</a>
+                <a class="dropdown-item" routerLink="/contact">Contact US</a>
+                
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item logout" (click)="logout()">Log Out</a>
+              </div>
+            </li>
+          </ul>
+      </div>
+  </div>
+ 
+</nav>

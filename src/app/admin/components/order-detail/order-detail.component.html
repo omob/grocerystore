@@ -1,0 +1,28 @@
+<h1>Order Details</h1>
+<div class="row col-10" *ngIf="orders$ | async as order">
+  <table class="table">
+    <thead>
+      <th></th>
+      <th>Product</th>
+      <th>Price</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of order.items">
+        <td>
+          <div [style.backgroundImage]="'url(' + item.product.imageUrl + ')'" class="thumbnail"></div>
+        </td>
+        <td>
+          {{item.product.title}} x {{item.quantity}}
+        </td>
+        <td>
+          {{ item.totalPrice | currency: 'USD' }}
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td> </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

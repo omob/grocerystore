@@ -1,0 +1,21 @@
+  <div class="row">
+    <div class="col-sm-12 col-md-3 col-12">
+      <product-filter [category]="category" ></product-filter>
+    </div>
+    <div class="m-3 d-block d-md-none"></div>
+    <div class="col-12 col-sm-12 col-md-9">
+      <div class="row" *ngIf="cart$ | async as cart">
+
+        <ng-container *ngFor="let product of filteredProducts; let i = index">
+          <div class="col mb-3 col-12 col-sm-6 col-md-6 col-lg-4">
+            <product-card [product] = "product" [shopping-cart] = "cart"></product-card>
+          </div>
+          <div *ngIf="(i + 1) % 2 === 0" class="w-100 d-md-none"></div>
+        </ng-container>
+
+        <div *ngIf="filteredProducts.length == 0">
+          <p class="text-center">We currently don't have this category... Please check back later.</p>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,10 @@
+.logout{
+    cursor: pointer;
+}
+
+.navbar-expand-lg 
+.navbar-nav 
+.dropdown-menu {
+    position: absolute;
+    z-index: 2000;
+}

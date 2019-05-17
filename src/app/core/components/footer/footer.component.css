@@ -9,7 +9,14 @@ footer{
   z-index: 100000;
 }
 
+
+footer p, footer span{
+  color: gray;
+}
+
 footer p {
   font-size: 16px;
-  color: gray;
+}
+footer span{
+  font-size: 12px;
 }
